@@ -39,14 +39,7 @@ class DDPGAgent(Agent):
                  random_process=None, custom_model_objects={}, target_model_update=.001,
                  policy=None, enable_twin_delay=False, policy_delay=None, noise_clip=0.5,
                  noise_sigma=0.2, **kwargs):
-        if hasattr(actor.output, '__len__') and len(actor.output) > 1:
-            raise ValueError('Actor "{}" has more than one output. DDPG expects an actor that has a single output.'.format(actor))
-        if hasattr(critic.output, '__len__') and len(critic.output) > 1:
-            raise ValueError('Critic "{}" has more than one output. DDPG expects a critic that has a single output.'.format(critic))
-        if critic_action_input not in critic.input:
-            raise ValueError('Critic "{}" does not have designated action input "{}".'.format(critic, critic_action_input))
-        if not hasattr(critic.input, '__len__') or len(critic.input) < 2:
-            raise ValueError('Critic "{}" does not have enough inputs. The critic must have at exactly two inputs, one for the action and one for the observation.'.format(critic))
+       
 
         super(DDPGAgent, self).__init__(**kwargs)
 
